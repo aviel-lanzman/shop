@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React from "react";
+import Header from "./component/header/Header";
+import Product from "./component/prodouct/Product";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    statos: true,
+    prodoucts: [],
+    saleSrc: "",
+    category: "all",
+    saleTim: { seconds: 1, minutes: 1, hours: 1, days: 0 },
+  };
+
+  src = "https://fakestoreapi.com/products";
+  componentDidMount() {
+    fetch(this.src)
+      .then((prodoucts) => prodoucts.json())
+      .then((prodoucts) =>
+        this.setState({
+          prodoucts,
+          saleSrc: prodoucts[12].image,
+        })
+      );
+  }
+  changeValue = (category) => {
+    this.setState({ category });
+  };
+  timeOut = (bool) => {
+    this.setState({ statos: bool });
+  };
+  // filter = (thisValue) => {
+  //   this.setState({ categorie: thisValue });
+  // };
+
+  render() {
+    console.log("dad");
+    return (
+      <>
+        <Header key={0} state={this.state} onChange={this.changeValue} />
+        <Product key={1} state={this.state} timeOut={this.timeOut} />
+      </>
+    );
+  }
 }
-
 export default App;
