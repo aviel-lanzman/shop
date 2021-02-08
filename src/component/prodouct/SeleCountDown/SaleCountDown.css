@@ -28,7 +28,7 @@
   background-color: red;
   position: relative;
   animation-name: example;
-  animation-duration: 1s;
+  animation: mymove 1s infinite;
 }
 .sale div {
   /* border-radius: 20px; */
@@ -52,6 +52,14 @@
     background-color: red;
     right: 98%;
     top: 0px;
+  }
+}
+@keyframes mymove {
+  from {
+    right: 0px;
+  }
+  to {
+    right: 98%;
   }
 }
 .sale {
