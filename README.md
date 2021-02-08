@@ -1,5 +1,5 @@
 # App
-https://aviel-lanzman.github.io/shop/src/App.js
+[App](https://github.com/aviel-lanzman/shop.github.io/src/App.js)
 
 
 # Getting Started with Create React App
