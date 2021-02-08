@@ -1,20 +1,18 @@
 import React from "react";
 
-class Section extends React.Component {
+class SingleProducts extends React.Component {
   render() {
-    console.log(this.props.state.statos);
+    console.log("dad - Children.Prodouct -Children.Section");
 
-    let { category, image, title, price } = this.props.prodouct;
+    const { category, image, title, price } = this.props.prodouct;
     const saleStyle = {
       borderStyle: "solid",
       borderWidth: "10px",
       borderColor: "red",
     };
-    console.log(this.props);
     return (
       <div
         className="product-card"
-        // key={id}
         style={
           this.props.state.statos && this.props.state.saleSrc === image
             ? saleStyle
@@ -34,4 +32,4 @@ class Section extends React.Component {
   }
 }
 
-export default Section;
+export default SingleProducts;

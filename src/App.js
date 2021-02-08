@@ -8,7 +8,8 @@ class App extends React.Component {
     statos: true,
     prodoucts: [],
     saleSrc: "",
-    value: "",
+    category: "all",
+    saleTim: { seconds: 1, minutes: 1, hours: 1, days: 0 },
   };
 
   src = "https://fakestoreapi.com/products";
@@ -22,17 +23,19 @@ class App extends React.Component {
         })
       );
   }
-  changeValue = (value) => {
-    this.setState({ value });
+  changeValue = (category) => {
+    this.setState({ category });
   };
   timeOut = (bool) => {
     this.setState({ statos: bool });
   };
+
   render() {
+    console.log("dad");
     return (
       <>
         <Header key={0} state={this.state} onChange={this.changeValue} />
-        <Product key={1} state={this.state} timeOut={this.timeOut} />,
+        <Product key={1} state={this.state} timeOut={this.timeOut} />
       </>
     );
   }

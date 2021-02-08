@@ -1,36 +1,30 @@
 import React from "react";
 
 class CollectionSort extends React.Component {
-  state = { value: "" };
   render() {
-    // const groupBy = (xs, key) =>
-    //   xs.reduce((rv, x) => {
-    //     rv[x[key]] = true || [];
-    //     return rv;
-    //   }, {});
-    // const products = [];
-    // const categories = Object.keys(groupBy(products, "category"));
+    console.log(
+      "dad - Children.Header -Children.Section - Children.CollectionSort"
+    );
 
-    const { select } = this.props;
-
-    const selects = select[1].map((s) => (
-      <option value={`${s.title}`} key={s.id}>
-        {/* onChange={} */}
-        {s.title}
-      </option>
-    ));
+    const { categories } = this.props;
+    // console.log(this.props);
     return (
-      <div className="collection-sort">
-        <label>{select[0][0].title}</label>
+      <>
         <select
           onChange={(e) => {
-            this.setState({ value: e.target.value });
+            this.props.onChange(e.target.value);
           }}
         >
-          {" "}
-          {selects}
+          <option value={"all"} key={0}>
+            {"all"}
+          </option>
+          {categories.map((select) => (
+            <option value={`${select}`} key={select.id}>
+              {select}
+            </option>
+          ))}
         </select>
-      </div>
+      </>
     );
   }
 }

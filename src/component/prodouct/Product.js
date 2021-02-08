@@ -1,23 +1,29 @@
 import React from "react";
 import SaleCountDown from "./SeleCountDown/SaleCountDown";
-import Section from "./Section/Section";
+import SingleProducts from "./Section/Section";
 
 class Prodouct extends React.Component {
-  state={
-    felter:"all"
-  }
   render() {
-    const { state } = this.props;
-    const { timeOut } = this.props;
-    const { prodoucts } = this.props.state;
-    return [
-      <SaleCountDown key={0} state={state} timeOut={timeOut} />,
-      <section key={1} className="products">
-        {prodoucts.map((prodouct) => (
-          <Section key={prodouct.id} state={state} prodouct={prodouct} />
-        )).felter((this.)=>{})}
-      </section>,
-    ];
+    console.log("dad - Children.Prodouct");
+    const { state, timeOut } = this.props;
+    const { prodoucts, category } = state;
+    return (
+      <>
+        <SaleCountDown key={0} state={state} timeOut={timeOut} />,
+        <section className="products">
+          {prodoucts
+            .filter((c) => c.category === category || category === "all")
+            .map((prodouct) => (
+              <SingleProducts
+                key={prodouct.id}
+                state={state}
+                prodouct={prodouct}
+              />
+            ))}
+        </section>
+        ,
+      </>
+    );
   }
 }
 export default Prodouct;
