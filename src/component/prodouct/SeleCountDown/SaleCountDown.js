@@ -1,91 +1,105 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./SaleCountDown.css";
-// import Datetime from "react-datetime";
-// import "react-datetime/css/react-datetime.css";
-class SaleCountDown extends React.Component {
-  state = {
-    flashingColor: true,
-    date: {
-      seconds: this.props.state.saleTim.seconds,
-      minutes: this.props.state.saleTim.minutes,
-      hours: this.props.state.saleTim.hours,
-      days: this.props.state.saleTim.days,
-    },
-  };
-  componentDidMount() {
-    this.timer = setInterval(() => {
-      const { seconds, minutes, hours, days } = this.state.date;
-      if (seconds || minutes || hours || days) {
-        this.setState(({ date: { seconds, minutes, hours, days } }) => ({
-          date: {
-            days:
-              seconds <= 0 && minutes <= 0 && hours <= 0 && days >= 1
-                ? days - 1
-                : days,
+const SaleCountDown = ({ saleSrc, status }) => {
+  console.log("dad - Children.Prodouct -Children.SaleCountDown");
 
-            hours:
-              seconds <= 0 && minutes <= 0 && hours >= 1
-                ? hours - 1
-                : seconds <= 0 && minutes <= 0 && hours <= 0 && days >= 1
-                ? hours + 23
-                : hours,
-            minutes:
-              seconds <= 0 && minutes >= 1
-                ? minutes - 1
-                : seconds <= 0 && minutes <= 0 && hours >= 0
-                ? minutes + 59
-                : minutes,
-            seconds:
-              seconds >= 1
-                ? seconds - 1
-                : minutes >= 1 || hours >= 1 || days >= 1
-                ? seconds + 59
-                : seconds,
-          },
-          flashingColor: this.state.flashingColor ? false : true,
-        }));
+  const [flashingColor, setFlashingColor] = useState(false);
+  const [timerDays, setTimerDays] = useState("00");
+  const [timerHours, setTimerHours] = useState("00");
+  const [timerMinutes, setTimerMinutes] = useState("00");
+  const [timerSeconds, setTimerSeconds] = useState("00");
+
+  console.log(status);
+  let interval = useRef();
+  let distance = 0;
+  useEffect(() => {
+    setFlashingColor(!flashingColor);
+
+    return () => {};
+  }, [timerSeconds]);
+  const startTimer = () => {
+    const countdownDate = new Date("Feb 28 2021 14:00:00").getTime();
+
+    interval = setInterval(() => {
+      const now = new Date().getTime();
+      distance = countdownDate - now;
+      let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      let hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      if (distance < 0) {
+        clearInterval(interval.current);
       } else {
-        clearInterval(this.timer);
-        this.props.timeOut(false);
+        setTimerDays(days);
+        setTimerHours(hours);
+        setTimerMinutes(minutes);
+        setTimerSeconds(seconds);
       }
     }, 1000);
-  }
+  };
+  useEffect(() => {
+    const ref = interval.current;
 
-  render() {
-    console.log("dad - Children.Prodouct -Children.SaleCountDown");
-    const { seconds, minutes, hours, days } = this.state.date;
-    const { saleSrc } = this.props.state;
-    const sale = (
-      <>
-        <img
-          src={saleSrc}
-          alt="sale prodouct"
-          className="imgSale"
-          style={{
-            borderColor: this.state.flashingColor ? "red" : null,
-          }}
-        />
-        {"  : המבצע יגמר  עוד "}
-        <div className="days">
-          {days ? `${days !== 1 ? `${days} ימים` : `${days} יום`} ` : null} {}
-        </div>
-        <div className="tim">
-          {hours >= 10 ? hours : "0" + hours}:
-          {minutes >= 10 ? minutes : "0" + minutes}:
-          {seconds >= 10 ? seconds : "0" + seconds}
-        </div>
-      </>
-    );
+    startTimer();
 
-    return (
-      <div className="sale" key={this.timer}>
-        {this.props.state.statos ? sale : "המבצע נגמר"}
-        <div dir={"rtl"}>
-          <div />
+    return () => {
+      clearInterval(ref);
+    };
+  }, []);
+  const colonStyle = {};
+  const img = saleSrc.map((src) => (
+    <img
+      key={src.id}
+      src={src.image}
+      alt=""
+      className="imgSale"
+      style={{
+        borderColor: flashingColor ? "red" : null,
+      }}
+    />
+  ));
+  const sale = (
+    <>
+      {img}
+      <div> :המבצע יגמר עוד</div>
+
+      <div className="tim">
+        <div>
+          {timerDays >= 1 && timerDays}
+          {timerDays >= 1 && (
+            <div>{`${Number(timerDays) > 1 ? `ימים` : `יום`} `}</div>
+          )}
+        </div>
+        <div>
+          {Number(timerHours) >= 10 ? timerHours : "0" + timerHours}
+          <div> שעות </div>
+        </div>
+        <div className="colon" style={{ color: flashingColor ? "red" : null }}>
+          {":"}
+        </div>
+
+        <div>
+          {Number(timerMinutes) >= 10 ? timerMinutes : "0" + timerMinutes}
+          <div> דקות</div>
+        </div>
+        <div className="colon" style={{ color: flashingColor ? "red" : null }}>
+          {":"}
+        </div>
+        <div>
+          {Number(timerSeconds) >= 10 ? timerSeconds : "0" + timerSeconds}
+          <div> שניות</div>
         </div>
       </div>
-    );
-  }
-}
+    </>
+  );
+  return (
+    <div className="sale" key={distance}>
+      {status ? sale : "המבצע נגמר"}
+    </div>
+  );
+};
 
 export default SaleCountDown;

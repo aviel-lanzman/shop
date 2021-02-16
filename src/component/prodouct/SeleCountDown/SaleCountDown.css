@@ -1,60 +1,41 @@
-.days {
-  /* border-color: rgb(0, 0, 0); */
+.tim {
   color: rgb(255, 0, 0);
   background-color: rgb(255, 255, 255);
   text-align: center;
-  font-size: 7vw;
+  font-size: 4vw;
   margin: auto;
   margin-bottom: 2%;
   border-style: none;
+  display: inherit;
+  display: flex;
+  align-self: center;
+}
+.tim div {
+  display: block;
+  margin: 2%;
+  font-size: 4vw;
 }
 .imgSale {
+  align-items: center;
   border-radius: 20px;
   border-style: solid;
-  border-width: 10px;
-  width: 35%;
+  border-width: 5px;
   color: rgb(255, 230, 0);
-  height: auto;
-  margin: auto;
+  width: 150px;
+  height: 150px;
+  margin: 2%;
 }
-.sale div div {
-  border-radius: 20px;
-  border-style: solid;
-  border-width: 2px;
-  color: black;
-  border-radius: 50%;
-  width: 10px;
-  height: 10px;
-  background-color: red;
-  position: relative;
-  animation-name: example;
-  animation-duration: 1s;
+.pading {
+  margin: 1%;
 }
+
 .sale div {
-  /* border-radius: 20px; */
-  /* border-style: solid; */
-  border-width: 2px;
+  margin: 2% 4%;
   color: black;
 }
 .sale {
-  border-radius: 20px;
-  border-style: solid;
-  border-width: 2px;
-  color: black;
-}
-@keyframes example {
-  0% {
-    background-color: rgb(94, 255, 0);
-    right: 0px;
-    top: 0px;
-  }
-  100% {
-    background-color: red;
-    right: 98%;
-    top: 0px;
-  }
-}
-.sale {
+  display: block;
+
   border-radius: 20px;
   border-style: solid;
   border-width: 10px;
@@ -62,7 +43,7 @@
   color: rgb(255, 0, 0);
   background-color: rgb(255, 255, 255);
   text-align: center;
-  font-size: 7vw;
+  font-size: 4vw;
   margin: auto;
   margin-bottom: 2%;
 }
