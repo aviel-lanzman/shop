@@ -1,55 +1,48 @@
 import "./App.css";
-import React, { useRef, useState, useEffect } from "react";
-import Header from "./component/header/Header";
+import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Home from "./pages/Home/Home";
+import About from "./pages/About/About";
+import SingleProducts from "./component/prodouct/Section/Section";
 import Product from "./component/prodouct/Product";
+import ThisProduct from "./component/prodouct/ThisProduct";
 
 const App = () => {
-  const [status, setStatus] = useState(true);
-  const [prodoucts, setProdoucts] = useState([]);
-  const [saleSrc, setSaleSrc] = useState([]);
-  const [category, setCategory] = useState("all");
-
-  const src = "https://fakestoreapi.com/products";
-
-  useEffect(() => {
-    fetch(src)
-      .then((prodoucts) => prodoucts.json())
-      .then((prodoucts) => {
-        console.log(prodoucts);
-        return (
-          setProdoucts(() => prodoucts),
-          setSaleSrc([prodoucts[12], prodoucts[2]])
-        );
-      });
-    console.log(prodoucts);
-  }, []);
-
-  const changeValue = (category) => {
-    setCategory(category);
-  };
-  const timeOut = (bool) => {
-    setStatus({ status: bool });
-  };
-
   console.log("dad");
-  console.log(saleSrc);
+  // console.log(saleSrc);
   return (
     <>
-      <Header
-        key={0}
-        saleSrc={saleSrc}
-        prodoucts={prodoucts}
-        status={status}
-        onChange={changeValue}
-      />
-      <Product
-        key={1}
-        category={category}
-        saleSrc={saleSrc}
-        prodoucts={prodoucts}
-        status={status}
-        timeOut={timeOut}
-      />
+      <Router>
+        <div>
+          <nav className="header">
+            <Link to="/login">login</Link>
+            <ul className="nav-links">
+              <li>
+                <Link to="/">בית</Link>
+              </li>
+              <li>
+                <Link to="/about">אודות</Link>
+              </li>
+              {/* <li>
+                <Link to="/users">Users</Link>
+              </li> */}
+            </ul>
+          </nav>
+
+          <Switch>
+            <Route path="/about">
+              <About />
+            </Route>
+            <Route
+              path="/shop/product/:productId"
+              component={ThisProduct}
+            ></Route>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
     </>
   );
 };

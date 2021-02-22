@@ -1,17 +1,17 @@
 import React from "react";
 
-const CollectionSort = ({ onChange, prodoucts }) => {
+const CollectionSort = ({ onChange, products }) => {
   console.log(
     "dad - Children.Header -Children.Section - Children.CollectionSort"
   );
 
-  console.log(prodoucts);
+  console.log(products);
   const groupBy = (xs, key) =>
     xs.reduce((rv, x) => {
       rv[x[key]] = true || [];
       return rv;
     }, {});
-  let categories = Object.keys(groupBy(prodoucts, "category"));
+  let categories = Object.keys(groupBy(products, "category"));
 
   return (
     <>

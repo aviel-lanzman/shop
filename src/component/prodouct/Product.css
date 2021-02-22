@@ -1,0 +1,12 @@
+*:hover {
+  color: rgb(153, 153, 153);
+}
+/* .this-product {
+  width: 100vw;
+} */
+.products {
+  text-align: center;
+}
+.MuiCardMedia-root {
+  background-size: contain;
+}

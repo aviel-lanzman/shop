@@ -1,0 +1,40 @@
+.thisProduct {
+  /* height: 30%; */
+  width: 250px;
+  text-align: center;
+  background: rgb(255, 255, 255);
+  border: 10px solid white;
+  margin: auto;
+}
+.thisProduct img {
+  width: 90%;
+  border-radius: 20px;
+}
+.thisProduct h1 {
+  font-size: 7vw;
+  padding: 3%;
+}
+.product-img {
+  padding: 3%;
+}
+.description {
+  padding: 3%;
+  font-size: 4vw;
+}
+.price {
+  padding: 3%;
+  font-size: 3vw;
+}
+.title {
+  padding: 3%;
+  font-size: 4vw;
+}
+body {
+  background-color: white;
+}
+.makeStyles-root-1 {
+  padding: 10%;
+}
+.MuiCardMedia-root {
+  background-size: contain;
+}

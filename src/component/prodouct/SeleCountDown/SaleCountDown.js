@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./SaleCountDown.css";
-const SaleCountDown = ({ saleSrc, status }) => {
-  console.log("dad - Children.Prodouct -Children.SaleCountDown");
 
+const SaleCountDown = ({ saleSrc, status }) => {
+  console.log("dad - Children.Product -Children.SaleCountDown");
+  // console.log(props);
   const [flashingColor, setFlashingColor] = useState(false);
   const [timerDays, setTimerDays] = useState("00");
   const [timerHours, setTimerHours] = useState("00");
@@ -49,7 +50,6 @@ const SaleCountDown = ({ saleSrc, status }) => {
       clearInterval(ref);
     };
   }, []);
-  const colonStyle = {};
   const img = saleSrc.map((src) => (
     <img
       key={src.id}
@@ -63,7 +63,7 @@ const SaleCountDown = ({ saleSrc, status }) => {
   ));
   const sale = (
     <>
-      {img}
+      {/* {img} */}
       <div> :המבצע יגמר עוד</div>
 
       <div className="tim">

@@ -1,7 +1,7 @@
 import React from "react";
 import CollectionSort from "./collection-sort/CollectionSort";
 
-const Header = ({ onChange, prodoucts, categorie }) => {
+const Header = ({ onChange, products, categories }) => {
   console.log("dad - Children.Header");
 
   return (
@@ -12,8 +12,8 @@ const Header = ({ onChange, prodoucts, categorie }) => {
           <label>Filter by:</label>
           <CollectionSort
             onChange={onChange}
-            categorie={categorie}
-            prodoucts={prodoucts}
+            categories={categories}
+            products={products}
           />
         </div>
         {/* <div className="collection-sort">

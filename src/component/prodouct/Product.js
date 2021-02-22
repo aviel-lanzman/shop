@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SaleCountDown from "./SeleCountDown/SaleCountDown";
 import SingleProducts from "./Section/Section";
+import { Link } from "react-router-dom";
+import "./Product.css";
+const Product = ({ Filter, category, timeOut, saleSrc, status, match }) => {
+  console.log("dad - Children.Product");
 
-const Prodouct = ({ prodoucts, category, timeOut, saleSrc, status }) => {
-  console.log("dad - Children.Prodouct");
+  const productsList = Filter.map((product) => (
+    <Link
+      key={product.id}
+      to={`shop/product/${product.id}`}
+      className="this-product"
+    >
+      <SingleProducts saleSrc={saleSrc} product={product} status={status} />
+    </Link>
+  ));
+
   return (
     <>
       <SaleCountDown
@@ -13,19 +25,8 @@ const Prodouct = ({ prodoucts, category, timeOut, saleSrc, status }) => {
         status={status}
       />
 
-      <section className="products">
-        {prodoucts
-          .filter((c) => c.category === category || category === "all")
-          .map((prodouct) => (
-            <SingleProducts
-              key={prodouct.id}
-              saleSrc={saleSrc}
-              prodouct={prodouct}
-              status={status}
-            />
-          ))}
-      </section>
+      <section className="products">{productsList}</section>
     </>
   );
 };
-export default Prodouct;
+export default Product;

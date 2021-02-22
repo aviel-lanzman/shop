@@ -191,10 +191,12 @@ table {
 
 body {
   margin: 0 auto;
-  width: 90%;
-  max-width: 1240px;
+  width: 100%;
+  max-width: 100%;
   font-family: "Roboto", sans-serif;
   background-color: #f6f6f6;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
 /* Typography */
@@ -203,6 +205,7 @@ h1 {
   font-size: 28px;
   font-weight: 300;
   flex: 1;
+  padding-left: 5%;
 }
 
 h5 {
@@ -237,7 +240,7 @@ h6 {
 }
 
 label {
-  color: #666;
+  color: rgb(255, 255, 255);
   font-size: 10px;
   font-weight: 500;
   line-height: 2em;
@@ -245,32 +248,38 @@ label {
 }
 
 .products {
-  display: flex;
-  flex-wrap: wrap;
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+  /* justify-content: center; */
+  /* width: 100%; */
+  /* display: grid; */
+  /* grid-gap: 2%; */
+  /* grid-template-columns: auto auto auto; */
 }
-.product-card:hover {
-  color: red;
+*:hover {
+  color: rgb(181, 174, 174);
 }
-.sale,
 .product-card {
   display: flex;
   flex-direction: column;
-
-  padding: 2%;
+  align-items: center;
+  /* padding: 2%; */
   flex: 1 16%;
-
-  background-color: #fff;
+  /* width: 250px; */
+  background-color: #ffffff;
   box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.25);
+  /* height: 360px; */
 }
 
 .product-image img {
-  width: 100%;
+  width: 200px;
 }
 
 .product-info {
   margin-top: auto;
   padding-top: 20px;
   text-align: center;
+  color: #666;
 }
 
 @media (max-width: 920px) {
@@ -278,8 +287,8 @@ label {
     flex: 1 21%;
   }
   .sale,
-  .products .product-card:first-child,
-  .products .product-card:nth-child(2) {
+  .products a .product-card:first-child,
+  .products a .product-card:nth-child(2) {
     flex: 2 46%;
   }
 }
@@ -303,4 +312,36 @@ label {
   .sort {
     align-self: flex-start;
   }
+}
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 4vh;
+  background: lightblue;
+  color: #f6f6f6;
+  padding: 2%;
+}
+.nav-links {
+  /* height: 5%; */
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+  flex-flow: row-reverse;
+}
+a {
+  color: #f6f6f6;
+  width: 100%;
+  text-decoration: none;
+}
+.header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.header::shadow {
+  border-radius: 0px 0px 35px 35px;
 }
