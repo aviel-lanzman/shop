@@ -1,9 +1,9 @@
 import React from "react";
+import RangeSlider from "../Slider";
 import CollectionSort from "./collection-sort/CollectionSort";
 
-const Header = ({ onChange, products, categories }) => {
+const Header = ({ onChange, products, categories, slider }) => {
   console.log("dad - Children.Header");
-
   return (
     <nav className="product-filter">
       <h1>Jackets</h1>
@@ -23,6 +23,7 @@ const Header = ({ onChange, products, categories }) => {
            onChange={onChange}
          />
         </div> */}
+        <RangeSlider slider={slider} />
       </div>
     </nav>
   );

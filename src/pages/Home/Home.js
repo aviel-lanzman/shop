@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Header from "../../component/header/Header";
 import Product from "../../component/prodouct/Product";
 import "../../App.css";
+import ThemeContext from "../../component/colors";
+import RangeSlider from "../../component/Slider";
 
-const Home = () => {
+const Home = (props) => {
   const [status, setStatus] = useState(true);
   const [products, setProducts] = useState([]);
   const [saleSrc, setSaleSrc] = useState([]);
   const [category, setCategory] = useState("all");
-
+  // const [Filter, setFilter] = useState([]);
+  const [slider, setSlider] = useState([0, 2000]);
   useEffect(() => {
-    const src = "https://fakestoreapi.com/products";
-    console.log(12);
+    const src = "http://localhost:8000/";
 
     fetch(src)
       .then((products) => products.json())
@@ -30,12 +32,10 @@ const Home = () => {
   const timeOut = (bool) => {
     setStatus({ status: bool });
   };
-  const Filter = products.filter(
-    (c) => c.category === category || category === "all"
-  );
-  console.log(Filter);
-  console.log(products);
-  console.log(status);
+  const Filter = products
+    .filter((price) => slider[0] < price.price && slider[1] > price.price)
+    .filter((c) => c.category === category || category === "all");
+
   return (
     <>
       <Header
@@ -44,6 +44,7 @@ const Home = () => {
         products={products}
         status={status}
         onChange={changeValue}
+        slider={setSlider}
       />
       <Product
         key={1}

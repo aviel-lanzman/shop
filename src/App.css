@@ -345,3 +345,7 @@ a {
 .header::shadow {
   border-radius: 0px 0px 35px 35px;
 }
+button {
+  margin: 2%;
+  border-radius: 40px;
+}

@@ -1,20 +1,44 @@
 import "./App.css";
-import React from "react";
+import React, { Provider, useContext, useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
 import SingleProducts from "./component/prodouct/Section/Section";
 import Product from "./component/prodouct/Product";
 import ThisProduct from "./component/prodouct/ThisProduct";
+import ThemeContext, { themes } from "./component/colors";
 
 const App = () => {
   console.log("dad");
-  // console.log(saleSrc);
+  const context = useContext(ThemeContext);
+  // console.log(context);
+  // const [color, setColor] = useState(context);
+  // console.log(color);
+  // const changeColors = () => {
+  //   if (color === themes.light) {
+  //     console.log(themes.dark);
+  //     setColor(themes.dark);
+  //   } else {
+  //     console.log(themes.light);
+  //     setColor(themes.light);
+  //   }
+  // };
+
   return (
-    <>
+    <ThemeContext.Provider value={themes}>
       <Router>
         <div>
-          <nav className="header">
+          {" "}
+          <nav
+            className="header"
+            // style={{
+            //   background: color.background,
+            //   color: color.foreground,
+            // }}
+          >
+            {/* <button onClick={() => changeColors()}>
+              change colors
+            </button> */}
             <Link to="/login">login</Link>
             <ul className="nav-links">
               <li>
@@ -28,7 +52,6 @@ const App = () => {
               </li> */}
             </ul>
           </nav>
-
           <Switch>
             <Route path="/about">
               <About />
@@ -43,7 +66,7 @@ const App = () => {
           </Switch>
         </div>
       </Router>
-    </>
+    </ThemeContext.Provider>
   );
 };
 export default App;
