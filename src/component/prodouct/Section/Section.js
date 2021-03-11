@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import "./SingleProducts.css";
 import ThemeContext from "../../colors";
 import { Link } from "react-router-dom";
+import { Grid, Paper } from "@material-ui/core";
+import sale from "./../../../sale.svg";
 
 const saleStyle = {
   borderStyle: "solid",
@@ -16,6 +18,7 @@ const SingleProducts = ({
   status,
   match,
   color,
+  classes,
 }) => {
   console.log("dad - Children.Product -Children.Section");
 
@@ -25,7 +28,7 @@ const SingleProducts = ({
     setExpanded(!expanded);
   };
   useParams();
-  const sale = () => {
+  const statosSale = () => {
     let bool = false;
     saleSrc.forEach((src) => {
       bool += src.image === image;
@@ -38,30 +41,69 @@ const SingleProducts = ({
   };
 
   return (
-    <div>
-      <div
-        key={id}
-        className="product-card"
-        style={status && sale() ? saleStyle : null}
-        category={category}
-      >
-        <div className="product-image">
-          <Link key={id} to={`shop/product/${id}`} className="this-product">
-            <img src={image} alt="productImage" />
-          </Link>
-        </div>
-        <div
-          className="product-info"
+    <>
+      <Grid item xs={4}>
+        <Paper
+          className={classes.paper}
           style={{
-            background: color.background,
-            color: color.foreground,
+            maxHeight: "240px",
+            maxWidth: "210px",
+            minWidth: "210px",
+            minHeight: "240px",
           }}
         >
-          <h5>{title}</h5>
-          <h6>${price}</h6>
-        </div>
-      </div>
-    </div>
+          {status && statosSale() ? (
+            <img
+              src={sale}
+              alt="sale"
+              style={{
+                width: "50px",
+                height: "30px",
+                position: "absolute",
+                marginRight: "49px",
+                transform: "rotate(-20deg)",
+              }}
+            />
+          ) : null}
+          <Link key={id} to={`shop/product/${id}`} className="this-product">
+            {/* {status && statosSale() ? (
+              <img
+                src={sale}
+                alt="some file"
+                style={{ width: "10px", height: "10px" }}
+              />
+            ) : null} */}
+            <div
+              key={id}
+              className="product-card"
+              // style={status && sale() ? sale.svg : null}
+              category={category}
+            >
+              <div className="product-image">
+                <img
+                  src={image}
+                  alt="productImage"
+                  style={{ maxHeight: "120px", maxWidth: "100px" }}
+                />
+              </div>
+
+              <div
+                className="product-info"
+                style={{
+                  maxHeight: "240px",
+                  maxWidth: "210px",
+                  minWidth: "210px",
+                  minHeight: "100px",
+                }}
+              >
+                <h5>{title}</h5>
+                <h6>${price}</h6>
+              </div>
+            </div>
+          </Link>
+        </Paper>
+      </Grid>
+    </>
   );
 };
 

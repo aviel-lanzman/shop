@@ -31,15 +31,26 @@ const App = () => {
           {" "}
           <nav
             className="header"
-            // style={{
-            //   background: color.background,
-            //   color: color.foreground,
-            // }}
+            style={
+              {
+                // width: "auto",
+                // background: color.background,
+                // color: color.foreground,
+              }
+            }
           >
             {/* <button onClick={() => changeColors()}>
               change colors
             </button> */}
-            <Link to="/login">login</Link>
+            <Link
+              to="/login"
+              style={{
+                width: "auto",
+              }}
+            >
+              login
+            </Link>
+            <h1>Here you buy everything</h1>
             <ul className="nav-links">
               <li>
                 <Link to="/">בית</Link>

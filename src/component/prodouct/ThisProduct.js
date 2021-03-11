@@ -26,9 +26,9 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: "100%",
   },
 }));
-
 const ThisProduct = ({ match }) => {
   const [productID, setProductID] = useState([]);
+  console.log(match.params.productId);
 
   useEffect(() => {
     fetch(`https://fakestoreapi.com/products/${match.params.productId}`)

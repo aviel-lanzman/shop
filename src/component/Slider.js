@@ -3,11 +3,26 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
-    width: 300,
+    flexGrow: 1,
   },
-});
+  paper: {
+    padding: theme.spacing(2),
+    margin: "auto",
+    maxWidth: 500,
+  },
+  image: {
+    width: 128,
+    height: 128,
+  },
+  img: {
+    margin: "auto",
+    display: "block",
+    maxWidth: "100%",
+    maxHeight: "100%",
+  },
+}));
 
 function valuetext(value) {
   return `${value}°C`;
@@ -24,7 +39,10 @@ export default function RangeSlider({ slider }) {
   console.log(slider());
   slider(value);
   return (
-    <div className={classes.root}>
+    <div
+      className={classes.root}
+      style={{ display: "inline-grid", width: "max-content" }}
+    >
       <Typography id="range-slider" gutterBottom>
         price range
       </Typography>

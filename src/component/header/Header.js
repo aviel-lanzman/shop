@@ -5,10 +5,15 @@ import CollectionSort from "./collection-sort/CollectionSort";
 const Header = ({ onChange, products, categories, slider }) => {
   console.log("dad - Children.Header");
   return (
-    <nav className="product-filter">
-      <h1>Jackets</h1>
-      <div className="sort">
-        <div className="collection-sort">
+    <nav
+      className="product-filter"
+      style={{ position: "fixed", height: "100%", width: "max-content" }}
+    >
+      <div
+        className="sort"
+        style={{ display: "block", alignSelf: "baseline", textAlign: "center" }}
+      >
+        <div className="collection-sort" style={{ display: "inline-flex" }}>
           <label>Filter by:</label>
           <CollectionSort
             onChange={onChange}

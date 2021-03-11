@@ -13,7 +13,7 @@ const Home = (props) => {
   // const [Filter, setFilter] = useState([]);
   const [slider, setSlider] = useState([0, 2000]);
   useEffect(() => {
-    const src = "http://localhost:8000/";
+    const src = "https://fakestoreapi.com/products";
 
     fetch(src)
       .then((products) => products.json())
@@ -25,7 +25,7 @@ const Home = (props) => {
       });
     console.log(products);
   }, []);
-
+  console.log(saleSrc);
   const changeValue = (category) => {
     setCategory(category);
   };
@@ -38,22 +38,24 @@ const Home = (props) => {
 
   return (
     <>
-      <Header
-        key={0}
-        saleSrc={saleSrc}
-        products={products}
-        status={status}
-        onChange={changeValue}
-        slider={setSlider}
-      />
-      <Product
-        key={1}
-        category={category}
-        saleSrc={saleSrc}
-        Filter={Filter}
-        status={status}
-        timeOut={timeOut}
-      />
+      <div dir="rtl">
+        <Header
+          key={0}
+          saleSrc={saleSrc}
+          products={products}
+          status={status}
+          onChange={changeValue}
+          slider={setSlider}
+        />
+        <Product
+          key={1}
+          category={category}
+          saleSrc={saleSrc}
+          Filter={Filter}
+          status={status}
+          timeOut={timeOut}
+        />
+      </div>
     </>
   );
 };
